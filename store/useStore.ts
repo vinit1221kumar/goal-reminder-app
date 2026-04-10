@@ -268,10 +268,9 @@ export const useStore = create<StoreState>()(
       onRehydrateStorage: () => (state, error) => {
         if (state) {
           state.setHasHydrated(true);
-          return;
+        } else {
+          useStore.setState({ hasHydrated: true });
         }
-
-        set({ hasHydrated: true });
 
         if (error) {
           console.error("Failed to rehydrate countdown-study-calendar store", error);
